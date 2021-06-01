@@ -35,9 +35,16 @@ jobs:
           #!/bin/bash
           az group create --name ${{ env.ResourceGroupName }} --location ${{ env.ResourceGroupLocation }}
  
+    - name: Preview Azure Bicep (What-if)
+      uses: Azure/arm-deploy@v1
+      with:
+        resourceGroupName: ${{ env.ResourceGroupName }}
+        deploymentMode: Validate
+        template: ./main.json
+
     - name: Deploy Azure Bicep
       uses: Azure/arm-deploy@v1
       with:
         resourceGroupName: ${{ env.ResourceGroupName }}
-        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        deploymentMode: Complete
         template: ./main.json
