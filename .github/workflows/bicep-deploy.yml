@@ -35,7 +35,7 @@ jobs:
           #!/bin/bash
           az group create --name ${{ env.ResourceGroupName }} --location ${{ env.ResourceGroupLocation }}
  
-    - name: Preview Azure Bicep (What-if)
+    - name: Validate Azure Bicep
       uses: Azure/arm-deploy@v1
       with:
         resourceGroupName: ${{ env.ResourceGroupName }}
