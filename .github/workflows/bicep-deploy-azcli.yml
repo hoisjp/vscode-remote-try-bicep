@@ -40,11 +40,11 @@ jobs:
       with:
         inlineScript: |
           #!/bin/bash
-          az deployment group what-if -f ./main.json -g ${{ env.ResourceGroupName }}
+          az deployment group what-if -f ./main.json -g ${{ env.ResourceGroupName }} --name ${{ env.ResourceGroupName }}
 
     - name: Deploy Azure Bicep
       uses: Azure/CLI@v1
       with:
         inlineScript: |
           #!/bin/bash
-          az deployment group create --mode Complete -f ./main.json -g ${{ env.ResourceGroupName }}
+          az deployment group create --mode Complete -f ./main.json -g ${{ env.ResourceGroupName }} --name ${{ env.ResourceGroupName }}

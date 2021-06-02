@@ -41,6 +41,7 @@ jobs:
         resourceGroupName: ${{ env.ResourceGroupName }}
         deploymentMode: Validate
         template: ./main.json
+        deploymentName: ${{ env.ResourceGroupName }}
 
     - name: Deploy Azure Bicep
       uses: Azure/arm-deploy@v1
@@ -48,3 +49,4 @@ jobs:
         resourceGroupName: ${{ env.ResourceGroupName }}
         deploymentMode: Complete
         template: ./main.json
+        deploymentName: ${{ env.ResourceGroupName }}
