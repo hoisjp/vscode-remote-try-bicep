@@ -1,11 +1,12 @@
-# Start from the dotnet base image to allow easy install of Powershell and ensure common tools are available for things like the bicep language server.
+# Start from the powershell base image to ensure common tools are available for things like the bicep language server.
 FROM mcr.microsoft.com/powershell:latest
 
 # Configure the release version of Bicep you'd like to use
 ARG BICEP_VERSION=latest
 
 # Install Azure CLI
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash \
+    && az version
 
 # Install common tooling
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
