@@ -1,0 +1,50 @@
+name: 'BicepDeploy'
+ 
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+ 
+jobs:
+ 
+  BicepDeploy:
+    name: 'BicepDeploy with Azure CLI'
+    runs-on: ubuntu-latest
+    env:
+      ResourceGroupName: rg-bicep-samples
+      ResourceGroupLocation: "japaneast"
+    environment: production
+ 
+    steps:
+ 
+    - uses: actions/checkout@v2
+ 
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+ 
+    - name: Azure Bicep Build
+      run: |
+        az bicep build --file ./main.bicep
+ 
+    - name: Az CLI Create Resource Group
+      uses: Azure/CLI@v1
+      with:
+        inlineScript: |
+          #!/bin/bash
+          az group create --name ${{ env.ResourceGroupName }} --location ${{ env.ResourceGroupLocation }}
+ 
+    - name: Preview Azure Bicep
+      uses: Azure/CLI@v1
+      with:
+        inlineScript: |
+          #!/bin/bash
+          az deployment group what-if -f ./main.json -g ${{ env.ResourceGroupName }}
+
+    - name: Deploy Azure Bicep
+      uses: Azure/CLI@v1
+      with:
+        inlineScript: |
+          #!/bin/bash
+          az deployment group create --mode Complete -f ./main.json -g ${{ env.ResourceGroupName }}
