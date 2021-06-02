@@ -12,6 +12,11 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash \
     && az version
 
+# Install act (GitHub Actions local runner. See also https://github.com/nektos/act)
+# RUN curl https://raw.githubusercontent.com/nektos/act/master/install.sh | bash
+# 'act' doesn't work on devcontainer. It works on local as well as on WSL.
+# RUN curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
+
 # Install Bicep
 RUN \
     # Fetch the latest Bicep CLI binary

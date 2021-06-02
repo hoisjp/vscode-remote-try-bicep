@@ -9,7 +9,7 @@ on:
 
 jobs:
 
-  BicepDeploy:
+  BicepDeployAzCLI:
     name: 'BicepDeploy with Azure CLI'
     runs-on: ubuntu-latest
     env:
