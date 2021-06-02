@@ -30,4 +30,4 @@ jobs:
       with:
         inlineScript: |
           #!/bin/bash
-          az deployment group --name ${{ env.ResourceGroupName }} -g ${{ env.ResourceGroupName }}
+          az deployment group delete --name ${{ env.ResourceGroupName }} -g ${{ env.ResourceGroupName }}
