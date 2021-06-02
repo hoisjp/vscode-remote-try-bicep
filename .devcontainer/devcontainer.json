@@ -10,9 +10,15 @@
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"/tmp/vscode-bicep.vsix",
+		"ms-azuretools.vscode-bicep",
 		"ms-vscode.powershell",
-		"msazurermtools.azurerm-vscode-tools"
+		"msazurermtools.azurerm-vscode-tools",
+		"ms-vscode.azure-account",
+		"ms-azuretools.vscode-azureresourcegroups",
+		"msazurermtools.azurerm-vscode-tools",
+		"ms-vscode.azurecli",
+		"bencoleman.armview",
+		"/tmp/vscode-bicep.vsix"
 	],
 
 	"mounts": [
