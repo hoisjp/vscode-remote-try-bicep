@@ -1,0 +1,35 @@
+name: 'BicepEmpty'
+
+on: 
+  workflow_dispatch:
+
+jobs:
+
+  BicepEmpty:
+    name: 'BicepEmpty'
+    runs-on: ubuntu-latest
+    env:
+      ResourceGroupName: rg-bicep-samples
+      ResourceGroupLocation: "japaneast"
+    environment: production
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Empty Resouce Group (What-if)
+      uses: Azure/CLI@v1
+      with:
+        inlineScript: |
+          #!/bin/bash
+          az deployment group what-if -f ./empty.bicep --name emptyAll -g ${{ env.ResourceGroupName }}
+
+    - name: Empty Resouce Group
+      uses: Azure/CLI@v1
+      with:
+        inlineScript: |
+          #!/bin/bash
+          az deployment group create --mode Complete -f ./empty.bicep --name emptyAll -g ${{ env.ResourceGroupName }}
