@@ -25,7 +25,7 @@ jobs:
       with:
         inlineScript: |
           #!/bin/bash
-          az deployment group what-if -f ./empty.bicep --name emptyAll -g ${{ env.ResourceGroupName }}
+          az deployment group what-if --mode Complete -f ./empty.bicep --name emptyAll -g ${{ env.ResourceGroupName }}
 
     - name: Empty Resouce Group
       uses: Azure/CLI@v1
