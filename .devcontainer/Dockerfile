@@ -6,7 +6,7 @@ ARG BICEP_VERSION=latest
 
 # Install common tooling
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends git curl build-essential
+    && apt-get -y install --no-install-recommends git curl
 
 # Install Azure CLI
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash \
