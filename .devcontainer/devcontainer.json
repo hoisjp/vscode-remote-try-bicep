@@ -18,7 +18,7 @@
 		"msazurermtools.azurerm-vscode-tools",
 		"ms-vscode.azurecli",
 		"bencoleman.armview",
-		"/tmp/vscode-bicep.vsix"
+		//"/tmp/vscode-bicep.vsix"
 	],
 
 	"mounts": [
